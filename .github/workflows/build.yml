@@ -5,7 +5,7 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
-
+  workflow_dispatch:
 jobs:
   build-windows:
     runs-on: windows-latest
@@ -34,8 +34,7 @@ jobs:
             git clone -b v0.6.1 https://github.com/facebookresearch/pytorch3d.git
           CIBW_BUILD: "cp38-win_amd64"  # Python 3.8 Windows x64
           CIBW_ENVIRONMENT: |
-            MMCV_WITH_OPS=1
-            FORCE_MLU=1
+            
           CIBW_BEFORE_BUILD_WINDOWS: |
             conda install -c conda-forge ffmpeg  # If conda is required
         run: |
